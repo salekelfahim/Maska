@@ -20,7 +20,7 @@ such as creating, viewing, updating, and deleting users through a web interface.
 ### Project Structure
 
 ### Dependency Injection (DI)
-
+est le mécanisme où l'on évite l'instanciation des objets a chaque fois, et en les remplaçant par l'injection des dépendances, et i lya trois type.
 ### Inversion of Control (IoC)
 
 ### Spring Beans
