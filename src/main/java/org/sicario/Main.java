@@ -1,19 +1,38 @@
 package org.sicario;
 
+import org.sicario.domain.Member;
+import org.sicario.service.MemberService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        MemberService memberService = context.getBean(MemberService.class);
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        Member member1 = Member.builder()
+                .firstName("Jock")
+                .lastName("Ron")
+                .build();
+        Member member2 = Member.builder()
+                .firstName("John")
+                .lastName("Doe")
+                .build();
+        Member member3 = Member.builder()
+                .firstName("Sam")
+                .lastName("Lit")
+                .build();
+
+        memberService.save(member1);
+        memberService.save(member2);
+        memberService.save(member3);
+
+        List<Member> members=  memberService.findAll();
+        members.forEach(System.out::println);
     }
 }
